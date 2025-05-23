@@ -1,0 +1,24 @@
+@(medicalRecordForm: Form[models.MedicalRecord], id: Long, patients: List[models.Patient], doctors: List[models.Doctor])
+@import helper._
+@main("Edit Medical Record") {
+    <h2>Edit Medical Record</h2>
+    @form(action = routes.MedicalRecordController.update(id)) {
+        @select(
+            medicalRecordForm("patient.id"),
+            options = patients.map(p => p.id.toString -> p.fullName),
+            '_label -> "Patient"
+        )
+        @select(
+            medicalRecordForm("doctor.id"),
+            options = doctors.map(d => d.id.toString -> d.name),
+            '_label -> "Doctor"
+        )
+        @inputText(medicalRecordForm("diagnosis"), '_label -> "Diagnosis")
+        @textarea(medicalRecordForm("treatment"), '_label -> "Treatment", 'rows -> 5)
+        @textarea(medicalRecordForm("prescription"), '_label -> "Prescription", 'rows -> 5)
+        @inputDate(medicalRecordForm("recordDate"), '_label -> "Record Date")
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="@routes.MedicalRecordController.list()" class="btn btn-default">Cancel</a>
+    }
+}

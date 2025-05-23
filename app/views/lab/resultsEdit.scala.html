@@ -1,0 +1,27 @@
+@(labResultForm: Form[models.LabResult], id: Long, labTests: List[models.LabTest], patients: List[models.Patient])
+@import helper._
+@main("Edit Lab Result") {
+    <h2>Edit Lab Result</h2>
+    @form(action = routes.LabController.updateResult(id)) {
+        @select(
+            labResultForm("labTest.id"),
+            options = labTests.map(test => test.testId.toString -> test.testName),
+            '_label -> "Lab Test"
+        )
+        @select(
+            labResultForm("patient.id"),
+            options = patients.map(p => p.id.toString -> p.fullName),
+            '_label -> "Patient"
+        )
+        @textarea(labResultForm("resultDetails"), '_label -> "Result Details", 'rows -> 4)
+        @inputDate(labResultForm("testDate"), '_label -> "Test Date")
+        @select(
+            labResultForm("status"),
+            options = Seq("Pending" -> "Pending", "Completed" -> "Completed", "Reported" -> "Reported"),
+            '_label -> "Status"
+        )
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="@routes.LabController.listResults()" class="btn btn-default">Cancel</a>
+    }
+}

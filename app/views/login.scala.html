@@ -1,0 +1,31 @@
+@(loginForm: Form[models.User])
+@import helper._
+
+@main("Login") {
+    <div class="container d-flex justify-content-center align-items-center" style="height: 400px; width: 450px; background: #f0f2f5;">
+        <div class="card shadow-lg p-4" style="width: 100%; width: 400px;">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4 text-primary">User Login</h3>
+                @form(action = routes.AuthController.authenticate()) {
+                    <div class="mb-3">
+                    @inputText(
+                        loginForm("username"),
+                        '_label -> "Username",
+                        'class -> "form-control"
+                    )
+                    </div>
+                    <div class="mb-3">
+                    @inputPassword(
+                        loginForm("password"),
+                        '_label -> "Password",
+                        'class -> "form-control"
+                    )
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

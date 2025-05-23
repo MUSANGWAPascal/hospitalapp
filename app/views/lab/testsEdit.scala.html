@@ -1,0 +1,13 @@
+@(labTestForm: Form[models.LabTest], id: Long)
+@import helper._
+@main("Edit Lab Test") {
+    <h2>Edit Lab Test</h2>
+    @form(action = routes.LabController.updateTest(id)) {
+        @inputText(labTestForm("testName"), '_label -> "Test Name")
+        @textarea(labTestForm("description"), '_label -> "Description", 'rows -> 3)
+        @inputText(labTestForm("cost"), '_label -> "Cost")
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="@routes.LabController.listTests()" class="btn btn-default">Cancel</a>
+    }
+}

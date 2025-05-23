@@ -1,0 +1,23 @@
+@(labResultForm: Form[models.LabResult], labTests: List[models.LabTest], patients: List[models.Patient])
+
+    @import helper._
+
+    @main("Add Lab Result") {
+        <h2>Add Lab Result</h2>
+        @helper.form(action = routes.LabController.saveResult()) {
+            @helper.select(
+                labResultForm("test.id"),
+                options = labTests.map(t => t.testId.toString -> t.testName),
+                '_label -> "Lab Test"
+            )
+            @helper.select(
+                labResultForm("patient.id"),
+                options = patients.map(p => p.id.toString -> p.fullName),
+                '_label -> "Patient"
+            )
+            @helper.inputText(labResultForm("resultDetails"), '_label -> "Result Details")
+            @helper.inputDate(labResultForm("resultDate"), '_label -> "Result Date")
+            @helper.inputText(labResultForm("status"), '_label -> "Status")
+            <input type="submit" value="Save" class="btn btn-primary"/>
+        }
+    }

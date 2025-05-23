@@ -1,0 +1,16 @@
+@(medicineForm: Form[models.Medicine], id: Long)
+@import helper._
+
+@main("Edit Medicine") {
+    <h1>Edit Medicine</h1>
+    @form(action = routes.PharmacyController.update(id)) {
+        @inputText(medicineForm("name"), '_label -> "Name")
+        @textarea(medicineForm("description"), '_label -> "Description")
+        @inputText(medicineForm("quantityInStock"), '_label -> "Quantity In Stock")
+        @inputText(medicineForm("price"), '_label -> "Price")
+        @inputDate(medicineForm("expiryDate"), '_label -> "Expiry Date")
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-default" href="@routes.PharmacyController.list()">Cancel</a>
+    }
+}

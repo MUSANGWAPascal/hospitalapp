@@ -1,0 +1,92 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                       controllers.Application.dashboard()
+GET     /login                  controllers.AuthController.login()
+POST    /login                  controllers.AuthController.authenticate()
+GET     /logout                 controllers.AuthController.logout()
+
+GET     /patients               controllers.PatientController.listPatients()
+GET     /patients/create        controllers.PatientController.create()
+POST    /patients/save          controllers.PatientController.save()
+GET     /patients/edit/:id      controllers.PatientController.edit(id: Long)
+POST    /patients/update/:id    controllers.PatientController.update(id: Long)
+GET     /patients/delete/:id    controllers.PatientController.delete(id: Long)
+
+GET     /doctors                controllers.DoctorController.listDoctors()
+GET     /doctors/create         controllers.DoctorController.create()
+POST    /doctors/save           controllers.DoctorController.save()
+GET     /doctors/edit/:id       controllers.DoctorController.edit(id: Long)
+POST    /doctors/update/:id     controllers.DoctorController.update(id: Long)
+GET     /doctors/delete/:id     controllers.DoctorController.delete(id: Long)
+
+GET     /appointments                  controllers.AppointmentController.list()
+GET     /appointments/create           controllers.AppointmentController.create()
+POST    /appointments/save             controllers.AppointmentController.save()
+GET     /appointments/edit/:id         controllers.AppointmentController.edit(id: Long)
+POST    /appointments/update/:id       controllers.AppointmentController.update(id: Long)
+GET     /appointments/delete/:id       controllers.AppointmentController.delete(id: Long)
+
+GET     /medicalrecords                  controllers.MedicalRecordController.list()
+GET     /medicalrecords/create           controllers.MedicalRecordController.create()
+POST    /medicalrecords/save             controllers.MedicalRecordController.save()
+GET     /medicalrecords/edit/:id         controllers.MedicalRecordController.edit(id: Long)
+POST    /medicalrecords/update/:id       controllers.MedicalRecordController.update(id: Long)
+GET     /medicalrecords/delete/:id       controllers.MedicalRecordController.delete(id: Long)
+
+GET     /bills                      controllers.BillingController.list()
+GET     /bills/create               controllers.BillingController.create()
+POST    /bills/save                 controllers.BillingController.save()
+GET     /bills/edit/:id             controllers.BillingController.edit(id: Long)
+POST    /bills/update/:id           controllers.BillingController.update(id: Long)
+GET     /bills/delete/:id           controllers.BillingController.delete(id: Long)
+
+GET     /pharmacy                    controllers.PharmacyController.list()
+GET     /pharmacy/create             controllers.PharmacyController.create()
+POST    /pharmacy/save               controllers.PharmacyController.save()
+GET     /pharmacy/edit/:id           controllers.PharmacyController.edit(id: Long)
+POST    /pharmacy/update/:id         controllers.PharmacyController.update(id: Long)
+GET     /pharmacy/delete/:id         controllers.PharmacyController.delete(id: Long)
+
+# Lab Tests
+GET     /lab/tests                 controllers.LabController.listTests()
+GET     /lab/tests/create          controllers.LabController.createTest()
+POST    /lab/tests/save            controllers.LabController.saveTest()
+GET     /lab/tests/edit/:id        controllers.LabController.editTest(id: Long)
+POST    /lab/tests/update/:id      controllers.LabController.updateTest(id: Long)
+GET     /lab/tests/delete/:id      controllers.LabController.deleteTest(id: Long)
+
+# Lab Results
+GET     /lab/results               controllers.LabController.listResults()
+GET     /lab/results/create        controllers.LabController.createResult()
+POST    /lab/results/save          controllers.LabController.saveResult()
+GET     /lab/results/edit/:id      controllers.LabController.editResult(id: Long)
+POST    /lab/results/update/:id    controllers.LabController.updateResult(id: Long)
+GET     /lab/results/delete/:id    controllers.LabController.deleteResult(id: Long)
+
+GET     /inventory               controllers.InventoryController.list()
+GET     /inventory/create        controllers.InventoryController.create()
+POST    /inventory/save          controllers.InventoryController.save()
+GET     /inventory/edit/:id      controllers.InventoryController.edit(id: Long)
+POST    /inventory/update/:id    controllers.InventoryController.update(id: Long)
+GET     /inventory/delete/:id    controllers.InventoryController.delete(id: Long)
+
+GET     /admin/users              controllers.UserController.list()
+GET     /admin/users/create       controllers.UserController.create()
+POST    /admin/users/save         controllers.UserController.save()
+GET     /admin/users/edit/:id     controllers.UserController.edit(id: Long)
+POST    /admin/users/update/:id   controllers.UserController.update(id: Long)
+GET     /admin/users/delete/:id   controllers.UserController.delete(id: Long)
+
+
+
+
+
+
+
+
+
+
+

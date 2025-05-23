@@ -1,0 +1,23 @@
+@(billForm: Form[models.Bill], id: Long, patients: List[models.Patient])
+@import helper._
+@main("Edit Bill") {
+    <h2>Edit Bill</h2>
+    @form(action = routes.BillingController.update(id)) {
+        @select(
+            billForm("patient.id"),
+            options = patients.map(p => p.id.toString -> p.fullName),
+            '_label -> "Patient"
+        )
+        @inputText(billForm("amount"), '_label -> "Amount")
+        @select(
+            billForm("status"),
+            options = Seq("Paid" -> "Paid", "Unpaid" -> "Unpaid", "Pending" -> "Pending"),
+            '_label -> "Status"
+        )
+        @inputDate(billForm("billingDate"), '_label -> "Billing Date")
+        @textarea(billForm("details"), '_label -> "Details", 'rows -> 5)
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="@routes.BillingController.list()" class="btn btn-default">Cancel</a>
+    }
+}

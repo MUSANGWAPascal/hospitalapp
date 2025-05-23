@@ -1,0 +1,15 @@
+@(itemForm: play.data.Form[models.InventoryItem])
+
+@main("Add Inventory Item") {
+    <h1>Add New Inventory Item</h1>
+
+    @helper.form(action = routes.InventoryController.save()) {
+        @helper.inputText(itemForm("itemName"), '_label -> "Item Name")
+        @helper.textarea(itemForm("description"), '_label -> "Description")
+        @helper.inputText(itemForm("quantity"), '_label -> "Quantity")
+        @helper.inputText(itemForm("unit"), '_label -> "Unit")
+        @helper.inputDate(itemForm("lastUpdated"), '_label -> "Last Updated")
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+}

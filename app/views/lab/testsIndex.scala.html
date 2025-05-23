@@ -1,0 +1,29 @@
+@(results: List[models.LabTest])
+    @import helper._
+    @main("Lab Tests") {
+        <h2>Lab Test</h2>
+        <a class="btn btn-success" href="@routes.LabController.createTest()">Add Lab Test</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(result <- results) {
+                <tr>
+                    <td> @result.testName </td>
+                    <td>@result.description</td>
+                    <td>@result.cost</td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="@routes.LabController.editTest(result.testId)">Edit</a>
+                        <a class="btn btn-danger btn-xs" href="@routes.LabController.deleteTest(result.testId)" onclick="return confirm('Delete this lab result?')">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }

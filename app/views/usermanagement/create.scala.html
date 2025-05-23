@@ -1,0 +1,20 @@
+@(userForm: Form[models.User])
+@import helper._
+@main("Create User") {
+    <h2>Create New User</h2>
+
+    @form(action = routes.UserController.save()) {
+        @inputText(userForm("username"), '_label -> "Username")
+        @inputPassword(userForm("password"), '_label -> "Password")
+        @inputText(userForm("fullName"), '_label -> "Full Name")
+
+        @select(
+            userForm("role"),
+            options = Seq("ADMIN" -> "Admin", "DOCTOR" -> "Doctor", "STAFF" -> "Staff"),
+            '_label -> "Role"
+        )
+
+        <button type="submit" class="btn btn-success">Create</button>
+        <a href="@routes.UserController.list()" class="btn btn-default">Cancel</a>
+    }
+}

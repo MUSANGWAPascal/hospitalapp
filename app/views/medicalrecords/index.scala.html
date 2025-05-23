@@ -1,0 +1,31 @@
+@(records: List[models.MedicalRecord])
+@import helper._
+@main("Medical Records") {
+    <h2>Medical Records</h2>
+    <a class="btn btn-success" href="@routes.MedicalRecordController.create()">Add New Record</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>Record Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(record <- records) {
+            <tr>
+                <td>@record.patient.fullName</td>
+                <td>@record.doctor.name</td>
+                <td>@record.diagnosis</td>
+                <td>@record.recordDate</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="@routes.MedicalRecordController.edit(record.recordId)">Edit</a>
+                    <a class="btn btn-danger btn-xs" href="@routes.MedicalRecordController.delete(record.recordId)" onclick="return confirm('Delete this record?')">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

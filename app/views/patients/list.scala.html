@@ -1,0 +1,44 @@
+@(patients: List[models.Patient])
+
+    @main("Patients List") {
+        <h2>Patients</h2>
+        <a class="btn btn-primary" href="@routes.PatientController.create()">Add New Patient</a>
+
+        <table border="1" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Assigned Doctor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(patient <- patients) {
+                @for(p <- patients.filter(_.fullName == patient.fullName)) {
+                    <tr>
+                            <td>
+                            @p.fullName
+                            </td>
+
+                    <td>@p.gender</td>
+                    <td>@p.phone</td>
+                    <td>
+                    @if(p.assignedDoctor != null) {
+                        @p.assignedDoctor.name
+                    } else {
+                        Not Assigned
+                    }
+                    </td>
+                    <td>
+                        <a href="@routes.PatientController.edit(p.id)">Edit</a> |
+                        <a href="@routes.PatientController.delete(p.id)" onclick="return confirm('Delete?')">Delete</a>
+                    </td>
+                    </tr>
+                }
+            }
+
+            </tbody>
+        </table>
+    }

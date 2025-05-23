@@ -1,0 +1,12 @@
+@(doctorForm: Form[models.Doctor], id: Long)
+@import helper._
+@main("Edit Doctor") {
+    <h2>Edit Doctor</h2>
+    @form(action = routes.DoctorController.update(id)) {
+        @inputText(doctorForm("name"), '_label -> "Name")
+        @inputText(doctorForm("specialty"), '_label -> "Specialty")
+        @inputText(doctorForm("phone"), '_label -> "Phone")
+        @inputText(doctorForm("email"), '_label -> "Email")
+        <button type="submit" class="btn btn-primary">Update</button>
+    }
+}

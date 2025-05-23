@@ -1,0 +1,20 @@
+@(userForm: Form[models.User], id: Long)
+@import helper._
+@main("Edit User") {
+    <h2>Edit User</h2>
+
+    @form(action = routes.UserController.update(id)) {
+        @inputText(userForm("username"), '_label -> "Username")
+        @inputPassword(userForm("passwordHash"), '_label -> "Password (leave blank to keep current password)")
+        @inputText(userForm("fullName"), '_label -> "Full Name")
+
+        @select(
+            userForm("role"),
+            options = Seq("ADMIN" -> "Admin", "DOCTOR" -> "Doctor", "STAFF" -> "Staff"),
+            '_label -> "Role"
+        )
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="@routes.UserController.list()" class="btn btn-default">Cancel</a>
+    }
+}

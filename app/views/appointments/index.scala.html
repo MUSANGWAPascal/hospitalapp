@@ -1,0 +1,31 @@
+@(appointments: List[models.Appointment])
+@import helper._
+@main("Appointments") {
+    <h2>Appointments List</h2>
+    <a class="btn btn-success" href="@routes.AppointmentController.create()">Add Appointment</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(app <- appointments) {
+            <tr>
+                <td>@app.patient.fullName</td>
+                <td>@app.doctor.name</td>
+                <td>@app.appointmentDate</td>
+                <td>@app.status</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="@routes.AppointmentController.edit(app.id)">Edit</a>
+                    <a class="btn btn-danger btn-xs" href="@routes.AppointmentController.delete(app.id)" onclick="return confirm('Delete this appointment?')">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

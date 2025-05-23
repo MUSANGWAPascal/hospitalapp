@@ -1,0 +1,12 @@
+@(doctorForm: Form[models.Doctor])
+@import helper._
+@main("Add Doctor") {
+    <h2>Add Doctor</h2>
+    @form(action = routes.DoctorController.save()) {
+        @inputText(doctorForm("name"), '_label -> "Name")
+        @inputText(doctorForm("specialty"), '_label -> "Specialty")
+        @inputText(doctorForm("phone"), '_label -> "Phone")
+        @inputText(doctorForm("email"), '_label -> "Email")
+        <button type="submit" class="btn btn-success">Save</button>
+    }
+}

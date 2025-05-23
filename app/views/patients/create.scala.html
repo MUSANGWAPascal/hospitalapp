@@ -1,0 +1,23 @@
+@(patientForm: Form[models.Patient], doctors: List[models.Doctor])
+    @import helper._
+
+    @main("Create Patient") {
+        <h2>Create Patient</h2>
+
+        @form(action = routes.PatientController.save()) {
+            @inputText(patientForm("fullName"), '_label -> "Full Name")
+            @inputText(patientForm("gender"), '_label -> "Gender")
+            @inputText(patientForm("address"), '_label -> "Address")
+            @inputText(patientForm("phone"), '_label -> "Phone")
+            @inputDate(patientForm("dob"), '_label -> "Date of Birth")
+            @inputText(patientForm("bloodGroup"), '_label -> "Blood Group")
+
+            @select(
+                patientForm("assignedDoctor.id"),
+                options = doctors.map(d => d.id.toString -> d.name),
+                '_label -> "Assigned Doctor"
+            )
+
+            <button type="submit">Save</button>
+        }
+    }

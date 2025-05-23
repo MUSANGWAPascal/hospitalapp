@@ -1,0 +1,34 @@
+@(results: List[models.LabResult])
+    @import helper._
+
+    @main("Lab Results") {
+        <h2>Lab Results</h2>
+        <a class="btn btn-success" href="@routes.LabController.createResult()">Add Lab Result</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Patient</th>
+                    <th>Result Details</th>
+                    <th>Test Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(result <- results) {
+                <tr>
+                    <td>@(if(result.test != null) result.test.testName else "N/A")</td>
+                    <td>@(if(result.patient != null) result.patient.fullName else "N/A")</td>
+                    <td>@result.resultDetails</td>
+                    <td>@result.resultDate</td>
+                    <td>@result.status</td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="@routes.LabController.editResult(result.id)">Edit</a>
+                        <a class="btn btn-danger btn-xs" href="@routes.LabController.deleteResult(result.id)" onclick="return confirm('Delete this lab result?')">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }

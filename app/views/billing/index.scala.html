@@ -1,0 +1,31 @@
+@(bills: List[models.Bill])
+@import helper._
+@main("Billing") {
+    <h2>Billing List</h2>
+    <a class="btn btn-success" href="@routes.BillingController.create()">Add Bill</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Billing Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(bill <- bills) {
+            <tr>
+                <td>@bill.patient.fullName</td>
+                <td>@bill.amount</td>
+                <td>@bill.status</td>
+                <td>@bill.billingDate</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="@routes.BillingController.edit(bill.id)">Edit</a>
+                    <a class="btn btn-danger btn-xs" href="@routes.BillingController.delete(bill.id)" onclick="return confirm('Delete this bill?')">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

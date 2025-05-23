@@ -1,0 +1,59 @@
+@(message: String = "Welcome Doctor", patientCount: Int = 0, appointmentCount: Int = 0)
+    @main("Doctor Dashboard") {
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <div class="container-fluid">
+            <div class="row">
+
+                    <!-- Sidebar -->
+                <div class="col-md-3" style="background-color: #f8f9fa; min-height: 100vh; padding: 20px;">
+                    <h4>Doctor Menu</h4>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="@routes.PatientController.listPatients()">My Patients</a></li>
+                        <li><a href="@routes.AppointmentController.list()">Appointments</a></li>
+                        <li><a href="@routes.MedicalRecordController.list()">Medical Records</a></li>
+                        <li><a href="@routes.PharmacyController.list()">Pharmacy</a></li>
+                        <li><a href="@routes.LabController.listTests()">Lab Tests</a></li>
+                        <li><a href="@routes.LabController.listResults()">Lab Results</a></li>
+                        <li><a href="@routes.AuthController.logout()" class="text-danger">Logout</a></li>
+                    </ul>
+                </div>
+
+                    <!-- Main Dashboard -->
+                <div class="col-md-9">
+                    <h2>@message</h2>
+                    <div class="row" style="margin-top: 30px;">
+
+                            <!-- Patient Summary -->
+                        <div class="col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Total Patients</div>
+                                <div class="panel-body">
+                                    <h3>@patientCount</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                            <!-- Appointment Summary -->
+                        <div class="col-md-6">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">Upcoming Appointments</div>
+                                <div class="panel-body">
+                                    <h3>@appointmentCount</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <!-- Chart Placeholder -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Health Overview</div>
+                        <div class="panel-body">
+                            <p>This section can show a chart (e.g., appointment trends, patient visits). Add Chart.js or Google Charts for visuals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

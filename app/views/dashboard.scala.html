@@ -1,0 +1,6 @@
+@(role: String)
+@main("Dashboard") {
+    <h2>Welcome to Hospital Management System</h2>
+    <p>You are logged in as: <strong>@role</strong></p>
+    <a href="@routes.AuthController.logout()" class="btn btn-danger">Logout</a>
+}

@@ -1,0 +1,27 @@
+@(appointmentForm: Form[models.Appointment], patients: List[models.Patient], doctors: List[models.Doctor])
+@import helper._
+@main("Add Appointment") {
+    <h2>Add Appointment</h2>
+    @form(action = routes.AppointmentController.save()) {
+        @select(
+            appointmentForm("patient.id"),
+            options = patients.map(p => p.id.toString -> p.fullName),
+            '_label -> "Patient"
+        )
+        @select(
+            appointmentForm("doctor.id"),
+            options = doctors.map(d => d.id.toString -> d.name),
+
+        '_label -> "Doctor"
+        )
+        @inputDate(appointmentForm("appointmentDate"), '_label -> "Appointment Date")
+        @select(
+            appointmentForm("status"),
+            options = Seq("Scheduled" -> "Scheduled", "Completed" -> "Completed", "Cancelled" -> "Cancelled"),
+            '_label -> "Status"
+        )
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="@routes.AppointmentController.list()" class="btn btn-default">Cancel</a>
+    }
+}

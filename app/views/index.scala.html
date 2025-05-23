@@ -1,0 +1,9 @@
+@(message: String)
+
+    @main("Home") {
+        <div class="jumbotron">
+            <h1>Hospital Management</h1>
+            <p>@message</p>
+            <a class="btn btn-primary" href="@routes.PatientController.listPatients()">View Patients</a>
+        </div>
+    }
