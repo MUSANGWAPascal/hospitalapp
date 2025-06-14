@@ -80,6 +80,14 @@ GET     /admin/users/edit/:id     controllers.UserController.edit(id: Long)
 POST    /admin/users/update/:id   controllers.UserController.update(id: Long)
 GET     /admin/users/delete/:id   controllers.UserController.delete(id: Long)
 
+# Prescription Route
+GET     /prescriptions                   controllers.PrescriptionController.list()
+GET     /prescriptions/create            controllers.PrescriptionController.create()
+POST    /prescriptions/save              controllers.PrescriptionController.save()
+GET     /prescriptions/edit/:id          controllers.PrescriptionController.edit(id: Long)
+POST    /prescriptions/update/:id        controllers.PrescriptionController.update(id: Long)
+GET     /prescriptions/delete/:id        controllers.PrescriptionController.delete(id: Long)
+
 
 
 

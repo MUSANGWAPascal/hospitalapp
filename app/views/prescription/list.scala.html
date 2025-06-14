@@ -1,0 +1,30 @@
+@(prescriptions: List[models.Prescription])
+@main("Prescriptions") {
+    <h2>Prescriptions</h2>
+    <a class="btn btn-success" href="@routes.PrescriptionController.create()">Add Prescription</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Medicine</th>
+                <th>Dosage</th>
+                <th>Instructions</th>
+                <th>Appointment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(p <- prescriptions) {
+            <tr>
+                <td>@p.medicine</td>
+                <td>@p.dosage</td>
+                <td>@p.instructions</td>
+                <td>@p.appointment.id</td>
+                <td>
+                    <a href="@routes.PrescriptionController.edit(p.prescriptionId)" class="btn btn-primary">Edit</a>
+                    <a href="@routes.PrescriptionController.delete(p.prescriptionId)" class="btn btn-danger" onclick="return confirm('Delete?')">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

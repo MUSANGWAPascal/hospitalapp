@@ -1,0 +1,19 @@
+
+@(prescriptionForm: Form[models.Prescription], appointments: List[models.Appointment])
+
+@import helper._
+
+@main("Add Prescription") {
+    <h2>Add Prescription</h2>
+    @form(action = routes.PrescriptionController.save()) {
+        @select(
+        prescriptionForm("appointment.id"),
+        options(appointments.map(a => a.id.toString -> ("Appointment #" + a.id)).toMap),
+        '_label -> "Appointment"
+        )
+        @inputText(prescriptionForm("medicine"), '_label -> "Medicine")
+        @inputText(prescriptionForm("dosage"), '_label -> "Dosage")
+        @inputText(prescriptionForm("instructions"), '_label -> "Instructions")
+        <button type="submit" class="btn btn-success">Save Prescription</button>
+    }
+}
